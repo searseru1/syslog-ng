@@ -1,0 +1,15 @@
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: allow-egress-external
+  namespace: syslog
+spec:
+  selector:
+    app.kubernetes.io/instance == "syslog"
+  types:
+    - Egress
+  egress:    
+    - action: Allow
+      destination:
+        nets:
+        - 78.61.56.41/32
